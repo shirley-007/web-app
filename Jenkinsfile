@@ -11,7 +11,7 @@ pipeline {
                 git branch: 'main', url: 'https://github.com/shirley-007/web-app.git'
             }
         }
-        stage ("Build with maven") {
+        stage ("Build, Test, Package with maven") {
             steps {
                 sh '''
                 mvn clean
