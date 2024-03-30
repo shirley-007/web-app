@@ -30,7 +30,7 @@ pipeline {
             steps {
                 script {
                     withSonarQubeEnv(credentialsId: 'sonar_id') {
-                    sh "${scanner_home}/bin/sonar-scanner"
+                    sh "${scanner_home}/bin/sonar-scanner -Dsonar.projectKey=webapp"
                     }
                 }
             }
