@@ -35,5 +35,11 @@ pipeline {
                 }
             }
         }
+
+        stage ("Upload to Nexus") {
+            steps {
+                nexusArtifactUploader artifacts: [[artifactId: 'maven-web-application', classifier: '', file: '/var/lib/jenkins/workspace/webapp-project/target/web-app.war', type: 'war']], credentialsId: '', groupId: 'com.mt', nexusUrl: '13.49.244.35:8081', nexusVersion: 'nexus3', protocol: 'http', repository: 'http://13.49.244.35:8081/repository/webapp-snapshot/', version: '3.1.2-SNAPSHOT'
+            }
+        }
     }
 }
