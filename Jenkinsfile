@@ -13,19 +13,13 @@ pipeline {
         }
         stage ("Build with maven") {
             steps {
-                sh "mvn clean"
+                sh '''
+                mvn clean
+                mvn test
+                mvn package
+                '''
             }
-        }
-        stage ("Test with maven") {
-            steps {
-                sh "mvn test"
-            }
-        }
 
-        stage ("Package with maven") {
-           steps {
-            sh "mvn package"
-           }
         }
     }
 }
