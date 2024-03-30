@@ -5,6 +5,11 @@ pipeline {
         maven "maven3.9.6"
 
     }
+
+    environment {
+        scanner_home = tool 'sonar5.0'
+    }
+
     stages {
         stage ("Git clone") {
             steps {
@@ -20,6 +25,15 @@ pipeline {
                 '''
             }
 
+        }
+        stage ("Sonarqube Analysis") {
+            steps {
+                script {
+                    withSonarQubeEnv(credentialsId: 'sonar_id') {
+                    sh "${scanner_home}/bin/sonar-scanner"
+                    }
+                }
+            }
         }
     }
 }
